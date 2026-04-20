@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 380px;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+      padding: 12px;
+      margin: 0;
+    }
+    h2 {
+      font-size: 13px;
+      margin: 12px 0 8px;
+      color: #333;
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: #f5f7fa;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .toggle-row label {
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 38px;
+      height: 22px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .2s;
+      border-radius: 22px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px; width: 16px;
+      left: 3px; bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+    input:checked + .slider { background-color: #4f8cff; }
+    input:checked + .slider:before { transform: translateX(16px); }
+    .profile-info {
+      font-size: 11px;
+      color: #999;
+      margin-top: 6px;
+      padding: 0 4px;
+    }
+    .tab-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding: 6px 4px;
+      font-size: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .tab-url {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #555;
+    }
+    button {
+      cursor: pointer;
+      font-size: 12px;
+      padding: 4px 8px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 4px;
+    }
+    button:hover { background: #f5f5f5; }
+    .add-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      box-sizing: border-box;
+      font-size: 12px;
+      margin-top: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .empty {
+      color: #999;
+      font-size: 12px;
+      padding: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-row">
+    <label for="auto-inject-toggle">新規ウィンドウへの自動展開</label>
+    <label class="switch">
+      <input type="checkbox" id="auto-inject-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <div class="profile-info">設定はこのプロファイル専用に保存されます</div>
+
+  <h2>登録済みの固定タブ</h2>
+  <div id="tab-list"></div>
+
+  <button class="add-btn" id="add-current-btn">現在のタブを追加</button>
+  <input type="text" id="url-input" placeholder="https://example.com">
+  <button class="add-btn" id="add-url-btn">入力した URL を追加</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
